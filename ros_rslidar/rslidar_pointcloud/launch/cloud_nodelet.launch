@@ -1,0 +1,31 @@
+<launch>
+    <arg name="manager" default="rslidar_nodelet_manager" />
+    <arg name="device_ip" default="192.168.1.10" />
+    <arg name="port" default="6699" />
+    <arg name="model" default="MEMS"/>
+
+    <!-- start nodelet manager -->
+    <node pkg="nodelet" type="nodelet" name="$(arg manager)" args="manager" />
+
+    <!-- load driver nodelet into it -->
+    <node pkg="nodelet" type="nodelet" name="$(arg manager)_driver"
+          args="load rs_driver/DriverNodelet $(arg manager)" output="screen">
+        <param name="model" value="$(arg model)"/>
+        <param name="device_ip" value="$(arg device_ip)" />
+        <param name="port" value="$(arg port)" />
+        <param name="pcap" value="/home/zhwu/Downloads/6CH_Point_Cloude_v1.pcap"/>
+        <!-- Set the Lidar data port on the PC side, default is 6699 -->
+        <param name="start_from_edge" value="true"/>
+    </node>
+
+    <node pkg="nodelet" type="nodelet" name="$(arg manager)_cloud"
+          args="load rslidar_pointcloud/CloudNodelet $(arg manager)" output="screen">
+        <param name="model" value="$(arg model)"/>
+        <param name="slow_path" value="$(find rslidar_pointcloud)/data/rs_lidar_mems/real_slow_axis.csv" />
+        <param name="channel_path" value="$(find rslidar_pointcloud)/data/rs_lidar_mems/ChannelNum.csv" />
+        <param name="dis_cal_temp_path" value="$(find rslidar_pointcloud)/data/rs_lidar_mems/limit.csv" />
+    </node>
+
+    <node name="rviz" pkg="rviz" type="rviz"  args="-d $(find rslidar_pointcloud)/rviz_cfg/rslidar.rviz" />
+
+</launch>

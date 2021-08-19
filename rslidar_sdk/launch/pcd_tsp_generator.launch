@@ -1,0 +1,16 @@
+<launch>
+
+
+<!--   zed and rslidar point cloud txt timestamps (editor if necessary, since bagtopcd can't give proper 16 int digit name) and generator -->
+
+  <node pkg="rslidar_pointcloud" name="dummy_rslidar_pcd_tsp_generator" type="pointcloud_tsp_generator_rslidar.py" output="screen">
+  </node>
+
+
+  <node pkg="zed_wrapper" name="dummy_zed_pcd_tsp_generator" type="pointcloud_tsp_generator_zed.py" output="screen">
+  </node>
+
+
+
+
+</launch>

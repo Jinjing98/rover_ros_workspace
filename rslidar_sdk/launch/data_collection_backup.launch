@@ -1,0 +1,88 @@
+<launch>
+
+
+<!--the dummy node to start the radar data collection!-->
+
+  <node pkg="strata_radar" name="dummynode4radar" type="dummy.py" output="screen" args="30">
+  </node>
+
+<!--the range dop node from radar!-->
+  <node pkg="strata_radar" name="range_dop_node" type="strata_RangeDoppler_vis.py" output="screen">
+  </node>
+
+<!--   another node from radar: time data -->
+<!--<node pkg="strata_radar" name="tiemdata_node" type="strata_Timedata.py" output="screen">-->
+<!--</node>-->
+
+
+
+
+
+
+  <node pkg="rslidar_sdk" name="rslidar_sdk_node" type="rslidar_sdk_node" output="screen">
+  </node>
+
+  <!-- rviz , this is for really carrying out OD-->
+  <node pkg="rviz" name="rviz" type="rviz" args="-d /home/tud-jxavier/catkin_ws/src/handy_rviz/rviz_manset_jinjing_nodelet_datacollection.rviz" />
+
+
+
+
+<!--scan from rslidar, the args for publisher can set yourself!-->
+
+  <node pkg="rslidar_pointcloud" name="distance_scan_publisher" type="distance_scan_publisher.py" output="screen" args="80 80">
+  </node>
+
+  <node pkg="rslidar_pointcloud" name="distance_scan_listener" type="listen_distance_scan.py" output="screen">
+  </node>
+
+
+<!--pointcloud data we will collect with .pcd file, so we use pcl_ros pkg defined node here!-->
+
+  <node pkg="pcl_ros" name="pcd_collector" type="pointcloud_to_pcd" output="screen"  args = "input:=/rslidar_points _prefix:=/media/tud-jxavier/SSD/data/rslidar/Pointcloud/">
+  </node>
+
+
+
+
+<!--pointcloud data FROM ZED we will collect with .pcd file, so we use pcl_ros pkg defined node here!-->
+
+  <node pkg="pcl_ros" name="pcd_collector_ZED" type="pointcloud_to_pcd" output="screen"  args = "input:=/zed2/zed_nodelet/point_cloud/cloud_registered
+ _prefix:=/media/tud-jxavier/SSD/data/zed/point_cloud/">
+  </node>
+
+
+
+
+<!--pointcloud data we will collect with .pcd file, so we use pcl_ros pkg defined node here!-->
+
+  <node pkg="pcl_ros" name="pcd_collector4zed" type="pointcloud_to_pcd" output="screen"  args = "input:=/zed2/zed_nodelet/point_cloud/cloud_registered _prefix:=/media/tud-jxavier/SSD/data/zed/point_cloud/">
+  </node>
+
+
+<!--img,imu,obj list,pose_twist of rover-->
+
+  <node pkg="zed_wrapper" name="img_listener" type="image_listener.py" output="screen">
+  </node>
+
+  <node pkg="zed_wrapper" name="imu_listener" type="imu_listener.py" output="screen">
+  </node>
+
+  <node pkg="zed_wrapper" name="obj_listener" type="obj_listener.py" output="screen">
+  </node>
+
+  <node pkg="zed_wrapper" name="pose_twist_listener" type="pose_twist_listener.py" output="screen">
+  </node>
+
+
+
+<!--to visulise the OD bounding box, the only choice is record certain topics via rosbag, refer to google doc note!-->
+<!--$ rosbag record -o /media/tud-jxavier/SSD/data/bagdata/OD   /rosout /tf /tf_static /zed2/zed_nodelet/left/image_rect_color /zed2/zed_nodelet/left/camera_info /zed2/zed_nodelet/point_cloud/cloud_registered /zed2/zed_nodelet/obj_det/object_markers-->  
+ 
+<node name="OD_rosbag_recorder" pkg="rosbag" type="record"
+      args="-o /media/tud-jxavier/SSD/data/bagdata/OD   /rosout /tf /tf_static /zed2/zed_nodelet/left/image_rect_color /zed2/zed_nodelet/left/camera_info /zed2/zed_nodelet/point_cloud/cloud_registered /zed2/zed_nodelet/obj_det/object_markers "/>
+
+ 
+
+
+</launch>

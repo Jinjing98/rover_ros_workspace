@@ -1,0 +1,51 @@
+<launch>
+
+
+
+
+
+ 
+
+
+
+<!--the dummy node to start the radar data collection!-->
+
+ 
+
+
+
+
+
+  <node pkg="rslidar_sdk" name="rslidar_sdk_node" type="rslidar_sdk_node" output="screen">
+  </node>
+
+
+
+ 
+
+
+
+<!--pointcloud data we will collect with .pcd file, so we use pcl_ros pkg defined node here!-->
+
+  <node pkg="pcl_ros" name="pcd_collector4zed" type="pointcloud_to_pcd" output="screen"  args = "input:=/zed2/zed_nodelet/point_cloud/cloud_registered _prefix:=/media/tud-jxavier/SSD/data/zed/point_cloud/">
+  </node>
+
+
+<!--img,imu,obj list,pose_twist of rover-->
+
+  <node pkg="zed_wrapper" name="img_listener" type="image_listener.py" output="screen">
+  </node>
+
+  <node pkg="zed_wrapper" name="imu_listener" type="imu_listener.py" output="screen">
+  </node>
+
+  <node pkg="zed_wrapper" name="obj_listener" type="obj_listener.py" output="screen">
+  </node>
+ 
+
+
+
+ 
+
+
+</launch>

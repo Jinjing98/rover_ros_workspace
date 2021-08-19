@@ -1,0 +1,32 @@
+0 # distance correction offset of channel 0
+0 # distance correction offset of channel 1
+0 # distance correction offset of channel 2
+0 # distance correction offset of channel 3
+0 # distance correction offset of channel 4
+0 # distance correction offset of channel 5
+1 # pitch rate
+1 # yaw rate
+0 # pitch offset of channel 0
+0 # pitch offset of channel 1
+0 # pitch offset of channel 2
+0 # pitch offset of channel 3
+0 # pitch offset of channel 4
+0 # pitch offset of channel 5
+0 # yaw offset of channel 0
+0 # yaw offset of channel 1
+0 # yaw offset of channel 2
+0 # yaw offset of channel 3
+0 # yaw offset of channel 4
+0 # yaw offset of channel 5
+-6.75 # yaw start angle of channel 0, -6.75~6.75
+6.75 # yaw end angle of channel 0, -6.75~6.75
+-6.75 # yaw start angle of channel 1, -6.75~6.75
+6.75 # yaw end angle of channel 1, -6.75~6.75
+-6.75 # yaw start angle of channel 2, -6.75~6.75
+6.75 # yaw end angle of channel 2, -6.75~6.75
+-6.75 # yaw start angle of channel 3, -6.75~6.75
+6.75 # yaw end angle of channel 3, -6.75~6.75
+-6.75 # yaw start angle of channel 4, -6.75~6.75
+6.75 # yaw end angle of channel 4, -6.75~6.75
+-6.75 # yaw start angle of channel 5, -6.75~6.75
+6.75 # yaw end angle of channel 5, -6.75~6.75
