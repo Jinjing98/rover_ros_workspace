@@ -37,6 +37,33 @@
   </node>
 
 
+<!--we remain the frame drop manner pcd file collections, since they are properly saved and can be read properly with vim -->
+
+
+<!--pointcloud data we will collect with .pcd file, so we use pcl_ros pkg defined node here!-->
+
+  <node pkg="pcl_ros" name="pcd_collector" type="pointcloud_to_pcd" output="screen"  args = "input:=/rslidar_points _prefix:=/media/tud-jxavier/SSD/data/rslidar/Pointcloud/">
+  </node>
+
+
+
+
+<!--pointcloud data FROM ZED we will collect with .pcd file, so we use pcl_ros pkg defined node here!-->
+
+  <node pkg="pcl_ros" name="pcd_collector_ZED" type="pointcloud_to_pcd" output="screen"  args = "input:=/zed2/zed_nodelet/point_cloud/cloud_registered
+ _prefix:=/media/tud-jxavier/SSD/data/zed/point_cloud/">
+  </node>
+
+
+
+
+
+
+
+
+
+
+
 
 
 

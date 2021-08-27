@@ -14,12 +14,11 @@
 <!--<node pkg="strata_radar" name="tiemdata_node" type="strata_Timedata.py" output="screen">-->
 <!--</node>-->
 
+<!-- by this tf publihser, we can connect the rslidar frame with respect to the system of zed-->
+  <node pkg="tf" name="static_transform_publisher" type="static_transform_publisher" args=" -0.02 -0.17 0.1 0 0 0 1  zed2_left_camera_frame rslidar 100" output="screen">
+  </node>
 
-
-
-
-
-  <node pkg="rslidar_sdk" name="rslidar_sdk_node" type="rslidar_sdk_node" output="screen">
+  <node pkg="rslidar_sdk" name="rslidar_sdk_node" type="rslidar_sdk_node" args="/home/tud-jxavier/catkin_ws/src/rslidar_sdk/config/config_ori_data_collection.yaml" output="screen">
   </node>
 
   <!-- rviz , this is for really carrying out OD-->
@@ -35,6 +34,40 @@
 
   <node pkg="rslidar_pointcloud" name="distance_scan_listener" type="listen_distance_scan.py" output="screen">
   </node>
+
+
+<!--we remain the frame drop manner pcd file collections, since they are properly saved and can be read properly with vim -->
+
+
+<!--pointcloud data we will collect with .pcd file, so we use pcl_ros pkg defined node here!-->
+
+  <node pkg="pcl_ros" name="pcd_collector" type="pointcloud_to_pcd" output="screen"  args = "input:=/rslidar_points _prefix:=/media/tud-jxavier/SSD/data/rslidar/Pointcloud/">
+  </node>
+
+<!--document the poses of point cloud frame /rslidar with respect to the map frame, i.e wrt the frame /map -->
+ 
+
+  <node pkg="rslidar_pointcloud" name="rslidar_map_transform_listener" type="listen_rslidar_map_transform.py" output="screen">
+  </node>
+
+
+
+
+
+<!--pointcloud data FROM ZED we will collect with .pcd file, so we use pcl_ros pkg defined node here!-->
+
+  <node pkg="pcl_ros" name="pcd_collector_ZED" type="pointcloud_to_pcd" output="screen"  args = "input:=/zed2/zed_nodelet/point_cloud/cloud_registered
+ _prefix:=/media/tud-jxavier/SSD/data/zed/point_cloud/">
+  </node>
+
+
+
+
+
+
+
+
+
 
 
 
@@ -80,9 +113,9 @@
 
 
 
-<!--   zed and rslidar point cloud directory cleaner -->
+<!--   zed and rslidar point cloud directory cleaner , we need to do it manually if needed-->
 
-
+<!--
   <node pkg="rslidar_pointcloud" name="dummy_rslidar_pcd_cleaner" type="pointcloud_dir_cleaner_rslidar.py" output="screen">
   </node>
 
@@ -90,7 +123,7 @@
   <node pkg="zed_wrapper" name="dummy_zed_pcd_cleaner" type="pointcloud_dir_cleaner_zed.py" output="screen">
   </node>
 
- 
+-->
 
 
 </launch>

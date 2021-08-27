@@ -2,14 +2,11 @@
 #include <boost/filesystem.hpp>
 #include <rosbag/bag.h>
 #include <rosbag/view.h>
-#include <pcl/io/io.h>
-#include <pcl/io/pcd_io.h>
-#include <pcl_conversions/pcl_conversions.h>
+#include "pcl/io/io.h"
+#include "pcl/io/pcd_io.h"
 #include "pcl_ros/transforms.h"
 #include <tf/transform_listener.h>
 #include <tf/transform_broadcaster.h>
-#include <stdlib.h>
-#include <stdio.h>
 
 typedef sensor_msgs::PointCloud2 PointCloud;
 typedef PointCloud::Ptr PointCloudPtr;
@@ -22,8 +19,8 @@ int
   ros::init (argc, argv, "bag_to_pcd");
   if (argc < 4)
   {
-    std::cerr << "Syntax is: " << argv[0] << " <file_in.bag> <topic> <output_directory> [<target_frame>]" << std::endl;
-    std::cerr << "Example: " << argv[0] << " data.bag /laser_tilt_cloud ./pointclouds /base_link" << std::endl;
+    std::cerr << "Syntax is: " << argv[0] << " <file_in.bag> <topic> <output_directory>" << std::endl;
+    std::cerr << "Example: " << argv[0] << " data.bag /laser_tilt_cloud ./pointclouds" << std::endl;
     return (-1);
   }
 
@@ -47,7 +44,6 @@ int
 
   view.addQuery (bag, rosbag::TypeQuery ("sensor_msgs/PointCloud2"));
   view.addQuery (bag, rosbag::TypeQuery ("tf/tfMessage"));
-  view.addQuery (bag, rosbag::TypeQuery ("tf2_msgs/TFMessage"));
   view_it = view.begin ();
 
   std::string output_dir = std::string (argv[3]);
@@ -87,51 +83,26 @@ int
         ++view_it;
         continue;
       }
+      // Transform it
+      pcl_ros::transformPointCloud ("/base_link", *cloud, cloud_t, tf_listener);
 
-      // If a target_frame was specified
-      if(argc > 4)
-      {
-        // Transform it
-        if (!pcl_ros::transformPointCloud (argv[4], *cloud, cloud_t, tf_listener))
-        {
-         ++view_it;
-         continue;
-        }
-      }
-      else
-      {
-        // Else, don't transform it
-        cloud_t = *cloud;
-      }
+     // std::cerr << "Got " << cloud_t.width * cloud_t.height << " data points in frame " << cloud_t.header.frame_id << " with the following fields: " << pcl::getFieldsList (cloud_t) << std::endl;
 
-      std::cerr << "Got " << cloud_t.width * cloud_t.height << " data points in frame " << cloud_t.header.frame_id << " with the following fields: " << pcl::getFieldsList (cloud_t) << std::endl;
-
-
-
-
-
-
-
-
+   
+//std::to_string((long long)((atof(ss.str ().c_str ( ))*1000000)) 
+ //     ss << output_dir << "/" << cloud_t.header.stamp << ".pcd";
+//(long long)((atof(ss.str ().c_str ( ))*1000000)
 
 
       std::stringstream ss;
       ss <<cloud_t.header.stamp;// << ".pcd";
-      ROS_INFO ("Data saved to %s",   std::to_string((atof(ss.str ().c_str ( )))) );
- //c_str ( ))*1000000
+      ROS_INFO ("Data saved to %s",   std::to_string((atof(ss.str ().c_str ( ))*1000000)) );
+ 
 
-      pcl::io::savePCDFile ( output_dir+std::to_string((long long)((atof(ss.str ().c_str ( )))) )+".pcd", cloud_t, Eigen::Vector4f::Zero (),
+      pcl::io::savePCDFile ( output_dir+std::to_string((long long)((atof(ss.str ().c_str ( ))*1000000)) )+".pcd", cloud_t, Eigen::Vector4f::Zero (),
                             Eigen::Quaternionf::Identity (), true);
 
  
-
-
-
-
-
-
-
-
     }
     // Increment the iterator
     ++view_it;
@@ -139,31 +110,3 @@ int
 
   return (0);
 }
-/* ]--- */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 

@@ -138,6 +138,10 @@ include_directories(
 add_executable(jj_bag2pcd src/jj_bag2pcd.cpp)
 target_link_libraries(jj_bag2pcd ${catkin_LIBRARIES})
 
+#add_executable(jj_bag2pcd2 src/jj_bag2pcd2.cpp)
+#target_link_libraries(jj_bag2pcd2 ${catkin_LIBRARIES})
+
+
 add_executable(jj_zed_pointcloud2pcd src/jj_zed_pointcloud_to_pcd.cpp)
  
 target_link_libraries(jj_zed_pointcloud2pcd  ${catkin_LIBRARIES} ${PCL_LIBRARIES})

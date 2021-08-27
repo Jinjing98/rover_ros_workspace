@@ -30,6 +30,11 @@ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWIS
 THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 *********************************************************************************************************************/
 
+#include <iostream>
+#include <assert.h>
+// boost.format 字符串处理
+#include <boost/format.hpp>
+
 #include <signal.h>
 #include "manager/adapter_manager.h"
 using namespace robosense::lidar;
@@ -58,7 +63,15 @@ int main(int argc, char** argv)
   YAML::Node config;
   try
   {
-    config = YAML::LoadFile((std::string)PROJECT_PATH + "/config/config.yaml");
+    
+    if (argc==2){
+	string pcd_path = argv[1];
+	config = YAML::LoadFile(pcd_path);}//  for data collection, we use the old version 
+    else{ // for general use and calibration, we use the Veloydne and raw points version.
+    config = YAML::LoadFile((std::string)PROJECT_PATH +"/config/config_Velodyne_rawpoints.yaml");//  be default will use this one!
+}
+    
+    //config = YAML::LoadFile((std::string)PROJECT_PATH +"/config/"argv[1]);//"/config/config.yaml");
   }
   catch (...)
   {
