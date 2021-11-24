@@ -1,7 +1,7 @@
 #! /usr/bin/python3
 import sys
 print(sys.version)
-sys.path.insert(0, '/home/tud-jxavier/infineon/Strata_release_x64_2.0.0/Python/')
+sys.path.insert(0, '/media/tud-jxavier/SSD/infineon/Strata_release_x64_2.0.0/Python/')
 import strata
 import rospy
 import numpy as np

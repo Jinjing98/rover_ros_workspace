@@ -67,9 +67,11 @@ int main(int argc, char** argv)
     if (argc==2){
 	string pcd_path = argv[1];
 	config = YAML::LoadFile(pcd_path);}//  for data collection, we use the old version 
-    else{ // for general use and calibration, we use the Veloydne and raw points version.
-    config = YAML::LoadFile((std::string)PROJECT_PATH +"/config/config_Velodyne_rawpoints.yaml");//  be default will use this one!
-}
+    else{ // for general use and calibration, we use the Veloydne and /raw points version.
+    config = YAML::LoadFile((std::string)PROJECT_PATH +"/config/config_ori_data_collection.yaml");//  be default will use this one!
+}//config_Velodyne_rawpoints.yaml
+
+///home/tud-jxavier/catkin_ws/src/rslidar_sdk/config/config_ori_data_collection.yaml
     
     //config = YAML::LoadFile((std::string)PROJECT_PATH +"/config/"argv[1]);//"/config/config.yaml");
   }

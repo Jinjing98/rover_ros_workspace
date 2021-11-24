@@ -15,7 +15,7 @@
 <!--</node>-->
 
 <!-- by this tf publihser, we can connect the rslidar frame with respect to the system of zed-->
-  <node pkg="tf" name="static_transform_publisher" type="static_transform_publisher" args=" -0.02 -0.17 0.1 0 0 0 1  zed2_left_camera_frame rslidar 100" output="screen">
+  <node pkg="tf" name="static_transform_publisher" type="static_transform_publisher" args="-0.04 -0.63 0.05 0 0 0 1  zed2_left_camera_frame rslidar 100" output="screen">
   </node>
 
   <node pkg="rslidar_sdk" name="rslidar_sdk_node" type="rslidar_sdk_node" args="/home/tud-jxavier/catkin_ws/src/rslidar_sdk/config/config_ori_data_collection.yaml" output="screen">
@@ -45,10 +45,8 @@
   </node>
 
 <!--document the poses of point cloud frame /rslidar with respect to the map frame, i.e wrt the frame /map -->
- 
-
-  <node pkg="rslidar_pointcloud" name="rslidar_map_transform_listener" type="listen_rslidar_map_transform.py" output="screen">
-  </node>
+<!--<node pkg="rslidar_pointcloud" name="rslidar_map_transform_listener" type="listen_rslidar_map_transform.py" output="screen">-->
+<!--</node>-->
 
 
 
@@ -74,14 +72,20 @@
 
 
 <!--maybe we need to change to ros bag for pcd data collection -->
-  <node name="ZED_PCD_rosbag_recorder" pkg="rosbag" type="record" args="-O /media/tud-jxavier/SSD/data/bagdata/ZED_PCD.bag   /zed2/zed_nodelet/point_cloud/cloud_registered ">
+<!--  <node name="ZED_PCD_rosbag_recorder" pkg="rosbag" type="record" args="-O /media/tud-jxavier/SSD/data/bagdata/ZED_PCD.bag   /zed2/zed_nodelet/point_cloud/cloud_registered ">
   </node>
 
   <node name="rslidar_PCD_rosbag_recorder" pkg="rosbag" type="record" args="-O /media/tud-jxavier/SSD/data/bagdata/rslidar_PCD.bag   /rslidar_points ">
   </node>
- 
+--> 
 
  
+
+
+
+
+
+
 
 
 
@@ -103,11 +107,19 @@
 
 
 
-<!--to visulise the OD bounding box, the only choice is record certain topics via rosbag, refer to google doc note!-->
+
+
+
+
+<!--to visulise the OD bounding box offline in rviz, the only choice is record certain topics via rosbag, refer to google doc note!-->
 <!--$ rosbag record -o /media/tud-jxavier/SSD/data/bagdata/OD   /rosout /tf /tf_static /zed2/zed_nodelet/left/image_rect_color /zed2/zed_nodelet/left/camera_info /zed2/zed_nodelet/point_cloud/cloud_registered /zed2/zed_nodelet/obj_det/object_markers-->  
  
-  <node name="OD_rosbag_recorder" pkg="rosbag" type="record"
+<!--  <node name="OD_rosbag_recorder" pkg="rosbag" type="record"
       args="-O /media/tud-jxavier/SSD/data/bagdata/OD.bag   /rosout /tf /tf_static /zed2/zed_nodelet/left/image_rect_color /zed2/zed_nodelet/left/camera_info /zed2/zed_nodelet/point_cloud/cloud_registered /zed2/zed_nodelet/obj_det/object_markers "/>
+-->
+
+  <node name="OD_rslidar_rosbag_recorder" pkg="rosbag" type="record"
+      args="-O /media/tud-jxavier/SSD/data/bagdata/OD_rslidar_zedpcd.bag   /rosout /tf /tf_static /zed2/zed_nodelet/left/image_rect_color /zed2/zed_nodelet/left/camera_info /zed2/zed_nodelet/point_cloud/cloud_registered /zed2/zed_nodelet/obj_det/object_markers  /rslidar_points "/>
 
 
 

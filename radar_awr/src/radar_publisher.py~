@@ -1,0 +1,21 @@
+#!/usr/bin/env python
+PKG = 'radar_awr'
+import roslib; roslib.load_manifest(PKG)
+
+import rospy
+from rospy.numpy_msg import numpy_msg
+from radar_awr.msg import RadarFrame
+import numpy
+
+def talker():
+    pub = rospy.Publisher('radar_frame', numpy_msg(RadarFrame), queue_size=10)
+    rospy.init_node('radar_pub', anonymous=True) #without anonymous?
+    r = rospy.Rate(10) # 10hz
+    while not rospy.is_shutdown():
+        ### Das ersetzen??? ###
+        a = numpy.array([1.0, 2.1, 3.2, 4.3, 5.4, 6.5], dtype=numpy.int16)
+        pub.publish(a)
+        r.sleep()
+
+if __name__ == '__main__':
+    talker()

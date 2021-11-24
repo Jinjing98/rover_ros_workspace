@@ -24,7 +24,7 @@ def callback_pointcloud(data):
     dis = np.sqrt(np.sum(np.square(XYdata_array), axis=1)) 
     #dis = dis.tolist()
     #  now we can use final_2d to intuitivley extract the depth or given row i in the world!!!
-    print("len of dis  ",  len(dis) )
+    #print("len of dis  ",  len(dis) )
     if len(dis)==78750:
             #print("len of dis  ",  dis.shape)#, dis[337500])
     #print("idxs for this row: ", idxx4rows)
@@ -99,7 +99,7 @@ if __name__ == "__main__":
 	stdorderlist_2d = [stdorderlist for i in range(126)]
 	stdorderlist4oddrow_2D = np.array([stdorderlist4oddrow for i in range(63)]).reshape(-1,625)
         stdorderarray_2d = np.array(stdorderlist_2d)
-	print(stdorderarray_2d.shape,stdorderlist4oddrow_2D.shape,"lllll")
+	#print(stdorderarray_2d.shape,stdorderlist4oddrow_2D.shape,"lllll")
 	stdorderarray_2d[1::2,:] = stdorderlist4oddrow_2D
 
         rowarray = np.array(range(126))
