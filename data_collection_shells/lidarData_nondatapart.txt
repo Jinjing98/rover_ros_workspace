@@ -1,0 +1,52 @@
+
+2021-05-20 19:29:45.630487
+5
+15750
+504000
+[name: "x"
+offset: 0
+datatype: 7
+count: 1, name: "y"
+offset: 4
+datatype: 7
+count: 1, name: "z"
+offset: 8
+datatype: 7
+count: 1, name: "intensity"
+offset: 16
+datatype: 7
+count: 1]
+2021-05-20 19:29:45.723742
+5
+15750
+504000
+[name: "x"
+offset: 0
+datatype: 7
+count: 1, name: "y"
+offset: 4
+datatype: 7
+count: 1, name: "z"
+offset: 8
+datatype: 7
+count: 1, name: "intensity"
+offset: 16
+datatype: 7
+count: 1]
+2021-05-20 19:29:45.825679
+5
+13875
+444000
+[name: "x"
+offset: 0
+datatype: 7
+count: 1, name: "y"
+offset: 4
+datatype: 7
+count: 1, name: "z"
+offset: 8
+datatype: 7
+count: 1, name: "intensity"
+offset: 16
+datatype: 7
+count: 1]

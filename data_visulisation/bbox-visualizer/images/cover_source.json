@@ -1,0 +1,98 @@
+{
+  "shapes": [
+    {
+      "label": "person",
+      "points": [
+        [
+          1868,
+          1201
+        ],
+        [
+          2394,
+          1917
+        ]
+      ]
+    },
+    {
+      "label": "person",
+      "points": [
+        [
+          1764,
+          1111
+        ],
+        [
+          1930,
+          1469
+        ]
+      ]
+    },
+    {
+      "label": "person",
+      "points": [
+        [
+          1218,
+          1197
+        ],
+        [
+          1744,
+          1917
+        ]
+      ]
+    },
+    {
+      "label": "person",
+      "points": [
+        [
+          866,
+          1075
+        ],
+        [
+          1070,
+          1569
+        ]
+      ]
+    },
+    {
+      "label": "bicycle",
+      "points": [
+        [
+          698,
+          1291
+        ],
+        [
+          1158,
+          1591
+        ]
+      ]
+    },
+    {
+      "label": "car",
+      "points": [
+        [
+          564,
+          1113
+        ],
+        [
+          810,
+          1257
+        ]
+      ]
+    },
+    {
+      "label": "traffic light",
+      "points": [
+        [
+          1106,
+          861
+        ],
+        [
+          1248,
+          993
+        ]
+      ]
+    }
+  ],
+  "imagePath": "cover_source.jpg",
+  "imageHeight": 1918,
+  "imageWidth": 2400
+}

@@ -1,0 +1,3 @@
+/media/tud-jxavier/SSD/data/zed/visulisation/vis3d_proj/build/CMakeFiles/rebuild_cache.dir
+/media/tud-jxavier/SSD/data/zed/visulisation/vis3d_proj/build/CMakeFiles/vis3d.dir
+/media/tud-jxavier/SSD/data/zed/visulisation/vis3d_proj/build/CMakeFiles/edit_cache.dir
