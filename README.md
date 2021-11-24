@@ -8,4 +8,4 @@ there are three tasks we want to achieve:
 2) collect data. each round of recording are saved and named with its recording time.
 3) based on the collect data, do offline visualisation. we can do the visuilisation of point cloud and/or bounding box in both rviz and non ros environment.
 
-The details of how to achieve the above three tasks please refer to the howto pdf file.
+The details of how to achieve the above three tasks please refer to the howto pdf file under data_collection_shells .
