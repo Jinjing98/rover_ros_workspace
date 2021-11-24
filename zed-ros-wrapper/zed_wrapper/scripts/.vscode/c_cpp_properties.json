@@ -1,0 +1,30 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "",
+        "limitSymbolsToIncludedHeaders": true
+      },
+      "includePath": [
+        "/opt/ros/melodic/include/**",
+        "/usr/local/include/**",
+        "/usr/local/include/**",
+        "/home/tud-jxavier/catkin_ws/devel/include/**",
+        "/home/tud-jxavier/catkin_ws/src/beginner_tutorials/include/**",
+        "/home/tud-jxavier/catkin_ws/src/f1tenth_simulator/include/**",
+        "/home/tud-jxavier/catkin_ws/src/pointcloud_to_laserscan/include/**",
+        "/home/tud-jxavier/catkin_ws/src/labs/f1tenth_labs/lab4/code/include/**",
+        "/home/tud-jxavier/catkin_ws/src/robot_localization/include/**",
+        "/home/tud-jxavier/catkin_ws/src/rr_openrover_stack/rr_openrover_driver/include/**",
+        "/home/tud-jxavier/catkin_ws/src/labs/f1tenth_labs/lab7/code/include/**",
+        "/home/tud-jxavier/catkin_ws/src/labs/f1tenth_labs/lab2/code/include/**",
+        "/home/tud-jxavier/catkin_ws/src/labs/f1tenth_labs/lab5/code/include/**",
+        "/home/tud-jxavier/catkin_ws/src/labs/f1tenth_labs/lab3/code/include/**",
+        "/home/tud-jxavier/catkin_ws/src/zed-ros-wrapper/zed_interfaces/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS"
+    }
+  ],
+  "version": 4
+}
