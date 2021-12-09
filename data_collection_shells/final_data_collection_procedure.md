@@ -1,4 +1,4 @@
-## command for Nice online visualization of everything(not collect data)
+## Online visualization of everything(not collect data)
 ```bash
 #1. kill all the nodes
 rosnode kill -a 
@@ -97,57 +97,54 @@ now i embeded the name changing code in the time stamp generator node, so maybe 
 			os.rename(f,new_name)
 
 
-
-
-## command for Nice offiline visualization of everything(with and without rviz)
-1. (with rviz) vis the OD,lidar pointcloud ,zed pointcloud in rviz.
-
+## Offiline visualization for playback
+1. (with rviz) vis the OD,lidar pointcloud ,zed pointcloud in rviz.(Chen: vis the OD, visualize the object detection?)
+```bash
 rosnode kill -a
-rosrun rviz rviz -d catkin_ws/src/handy_rviz/Rviz_config/vis_bagdata.rviz #all the config files for rviz is under dirctory : catkin_ws/src/handy_rviz 
+rosrun rviz rviz -d catkin_ws/src/handy_rviz/Rviz_config/vis_bagdata.rviz
+#all the config files for rviz is under dirctory : catkin_ws/src/handy_rviz 
 rosbag play /media/tud-jxavier/SSD/data/bagdata/OD_rslidar_zedpcd.bag
+```
 use the one below or above!
-
-	rosnode kill -a
-	rviz (setting the rviz file with rvizmansetjinjingnodelet.rviz)
+Chen:difference? which prefer?
+```bash
+rosnode kill -a
+rviz (setting the rviz file with rvizmansetjinjingnodelet.rviz)
 rosbag play OD_rslidar_zedpcd.bag
-      
-2. (without rviz) vis 2D aligned frame stream with BB and label:
+```      
+2. (without rviz) vis 2D aligned frame stream with BBox and label:
+```bash
+#usage: assosiate.py [-h] 
+#                    [--first_only] 
+#                    [--offset OFFSET]
+#                    first_file  second_file  max_difference  outpath
+#recommend values for max_difference is 0.001, which means perfectly match of tsp.
 
-
-“how to use associate.py?”:
-
- usage: assosiate.py [-h] [--first_only] [--offset OFFSET]
-                    first_file second_file max_difference outpath
-recommend values for max_difference is 0.001  means perfectly match of tsp.
-
-
-align timestamp data of OD tsp and left tsp.
+#align timestamp data of OD tsp and left tsp.
 python /media/tud-jxavier/SSD/catkin_ws/src/data_collection_shells/assosiate.py /media/tud-jxavier/SSD/data/zed/timestamps/timestamp_OD.txt /media/tud-jxavier/SSD/data/zed/timestamps/timestamp_IMG.txt 0.10001 /media/tud-jxavier/SSD/data/zed/timestamps/alighed_timestamp.txt
-vis 2d stream:
+#vis 2d stream:
 python /media/tud-jxavier/SSD/data/zed/visulisation/vis2d.py  /media/tud-jxavier/SSD/data/zed/timestamps/alighed_timestamp.txt
+```
 
+3. vis certain aligned left frame with BBox and label:
+```bash
+#pick one reasonable (i.e.  there are corresponding OD info) left image tsp 1626352358974896  for example.
+python /media/tud-jxavier/SSD/data/zed/visulisation/vis2d.py  1637659459417035
+```
 
-
-3. vis certain aligned left frame with BB and label:
-
-pick one reasonable(i.e.  there are corresponding OD info) left image tsp 1626352358974896  for example.
-
-usage: python /media/tud-jxavier/SSD/data/zed/visulisation/vis2d.py  1637659459417035
-
-
-4. vis  3D aligned pointcloud stream with BB:(not recomended!)
-
-
-aligh tsp of OD and  zed pcd:
+4. vis 3D aligned pointcloud stream with BBox: (not recomended!)(Chen: ignore this?)
+```bash
+#aligh tsp of OD and  zed pcd:
 python /media/tud-jxavier/SSD/catkin_ws/src/data_collection_shells/assosiate.py /media/tud-jxavier/SSD/data/zed/timestamps/timestamp_OD.txt /media/tud-jxavier/SSD/data/zed/timestamps/timestamp_pcd_zed.txt 0.10001 /media/tud-jxavier/SSD/data/zed/timestamps/alighed_timestamp.txt
-vis slow stream:
-/media/tud-jxavier/SSD/data/zed/visulisation/vis3d_proj/build/vis3d   /media/tud-jxavier/SSD/data/zed/timestamps/alighed_timestamp.txt
+#vis slow stream:
+/media/tud-jxavier/SSD/data/zed/visulisation/vis3d_proj/build/vis3d /media/tud-jxavier/SSD/data/zed/timestamps/alighed_timestamp.txt
+```
 
-
-5. vis certain aligned pcd with BB and label:
-pick one reasonable(i.e.  there are corresponding OD info)pcd tsp 1626352359374947  for example.
+5. vis certain aligned pcd with BBox and label:
+```bash
+#pick one reasonable(i.e.  there are corresponding OD info)pcd tsp 1626352359374947  for example.
 /media/tud-jxavier/SSD/data/zed/visulisation/vis3d_proj/build/vis3d   1637659449616185
-
+```
 
 6. visualize single frame via pcl_viewer
 ```bash
@@ -196,6 +193,19 @@ rosrun strata_radar  dummy.py 30
 rosrun strata_radar strata_RangeDoppler_vis.y 
 roslaunch rslidar_sdk everything.launch 
 
+## energy check before recording:
+- controller battery (ds4drv --hidraw)
+- rover battery
+- Lidar battery
+- HDMI receiver battery
+- HDMI transmitter battery (white)
+
+
+## power up set-up:
+- enable rover
+- enable jetson
+- enable display
+- enable lidar
 
 ## Troubleshooting
 - no response from ds4 controller: 
@@ -209,7 +219,7 @@ roslaunch rslidar_sdk everything.launch
 - alias collect_data.sh
 - automate check error after `systemctl restart rover.service` (yelloe should blink -> replugin cable)
 - optimize 2+1 ctrl-c in data_collect.sh
-- 
+- think about blind recording.
 
 
 
