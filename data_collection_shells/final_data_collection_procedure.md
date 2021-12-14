@@ -98,19 +98,12 @@ now i embeded the name changing code in the time stamp generator node, so maybe 
 
 
 ## Offiline visualization for playback
-1. (with rviz) vis the OD,lidar pointcloud ,zed pointcloud in rviz.(Chen: vis the OD, visualize the object detection?)
+1. (with rviz) visulize the object detection,lidar pointcloud ,zed pointcloud in rviz.
 ```bash
 rosnode kill -a
-rosrun rviz rviz -d catkin_ws/src/handy_rviz/Rviz_config/vis_bagdata.rviz
-#all the config files for rviz is under dirctory : catkin_ws/src/handy_rviz 
+rviz (setting the rviz file with rvizmansetjinjingnodelet.rviz, all the config files for rviz is under dirctory : catkin_ws/src/handy_rviz)
+#alternative: rosrun rviz rviz -d catkin_ws/src/handy_rviz/Rviz_config/rvizmansetjinjingnodelet.rviz
 rosbag play /media/tud-jxavier/SSD/data/bagdata/OD_rslidar_zedpcd.bag
-```
-use the one below or above!
-Chen:difference? which prefer?
-```bash
-rosnode kill -a
-rviz (setting the rviz file with rvizmansetjinjingnodelet.rviz)
-rosbag play OD_rslidar_zedpcd.bag
 ```      
 2. (without rviz) vis 2D aligned frame stream with BBox and label:
 ```bash
@@ -132,7 +125,7 @@ python /media/tud-jxavier/SSD/data/zed/visulisation/vis2d.py  /media/tud-jxavier
 python /media/tud-jxavier/SSD/data/zed/visulisation/vis2d.py  1637659459417035
 ```
 
-4. vis 3D aligned pointcloud stream with BBox: (not recomended!)(Chen: ignore this?)
+4. vis 3D aligned pointcloud stream with BBox: (lagging, not recomended!)
 ```bash
 #aligh tsp of OD and  zed pcd:
 python /media/tud-jxavier/SSD/catkin_ws/src/data_collection_shells/assosiate.py /media/tud-jxavier/SSD/data/zed/timestamps/timestamp_OD.txt /media/tud-jxavier/SSD/data/zed/timestamps/timestamp_pcd_zed.txt 0.10001 /media/tud-jxavier/SSD/data/zed/timestamps/alighed_timestamp.txt
@@ -156,43 +149,7 @@ pcl_viewer /media/tud-jxavier/SSD/data/zed/point_cloud/1635699662568589.pcd  -us
 #g: grid
 #u: scale
 ```
-
-
-## trash doc
-
-systemstl restart rover
-rosrun rviz rviz -d  /media/tud-jxavier/SSD/ta/Rviz_config/vis_rslidar.rviz
-rosrun rviz rviz -d  /media/tud-jxavier/SSD/ta/Rviz_config/vis_bagdata.rviz  // change to rslidar
-
-roslaunch rslidar_sdk data_collection_backup.launch 
-
-rosrun rviz rviz -d  /media/tud-jxavier/SSD/ta/Rviz_config/vis_rslidar.rviz
-
-rosrun rviz rviz -d  /media/tud-jxavier/SSD/ta/Rviz_config/vis_bagdata.rviz
-
-data_collection_ori
-
-SYSTEMCTL 
-
-EVERYTHING
-
- systemctl restart roverrobotics.service 
-
-  <!-- rviz , this is for really carrying out OD-->
-  <node pkg="rviz" name="rviz" type="rviz" args="-d /media/tud-jsxavier/SSD/data/Rviz_config/vis_bagdata.rviz" >
-  </node>
-  <node pkg="rviz" name="rviz2" type="rviz" args="-d /media/tud-jxavier/SSD/data/Rviz_config/vis_rslidar.rviz" >
-  </node>
-
-rosrun strata_radar  dummy.py 30
-rosrun strata_radar strata_RangeDoppler_vis.y 
-rosrun rslidar_sdk rslidar_sdk_node
-
- systemctl restart roverrobotics.service 
-rosrun strata_radar  dummy.py 30
-rosrun strata_radar strata_RangeDoppler_vis.y 
-roslaunch rslidar_sdk everything.launch 
-
+		
 ## energy check before recording:
 - controller battery (ds4drv --hidraw)
 - rover battery
