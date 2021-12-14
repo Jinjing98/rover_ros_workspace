@@ -1,6 +1,6 @@
 <launch>
 
-
+<!--<node name="runtime_benchmark" pkg="rslidar_pointcloud" type="roslaunch_kill.sh" /> !-->
 <!--the dummy node to start the radar data collection!-->
 
   <node pkg="strata_radar" name="dummynode4radar" type="dummy.py" output="screen" args="30">
@@ -136,6 +136,11 @@
   </node>
 
 -->
+
+
+
+
+
 
 
 </launch>

@@ -1,0 +1,30 @@
+● roverrobotics.service
+   Loaded: loaded (/etc/systemd/system/roverrobotics.service; enabled; vendor preset: enabled)
+   Active: active (running) since Thu 2021-12-09 16:56:10 CET; 5s ago
+ Main PID: 12950 (roverrobotics)
+    Tasks: 106 (limit: 4915)
+   CGroup: /system.slice/roverrobotics.service
+           ├─12950 /bin/bash /usr/sbin/roverrobotics
+           ├─13012 /usr/bin/python /opt/ros/melodic/bin/roslaunch rr_openrover_driver starterkit_bringup.launch
+           ├─13041 /opt/ros/melodic/lib/nodelet/nodelet manager __name:=zed2_nodelet_manager __log:=/home/tud-jxavier/.ros/log/b946f42a-58f4-11ec-931a-48b02d05ab65/zed2-zed2_nodelet_manager-1.log
+           ├─13042 /opt/ros/melodic/lib/robot_state_publisher/robot_state_publisher robot_description:=zed2_description __name:=zed2_state_publisher __log:=/home/tud-jxavier/.ros/log/b946f42a-58f4-11ec-931a-48b02d05ab65/zed2-zed2_state_publisher-2.log
+           ├─13043 /opt/ros/melodic/lib/nodelet/nodelet load zed_nodelets/ZEDWrapperNodelet zed2_nodelet_manager __name:=zed_nodelet __log:=/home/tud-jxavier/.ros/log/b946f42a-58f4-11ec-931a-48b02d05ab65/zed2-zed_nodelet-3.log
+           ├─13049 /opt/ros/melodic/lib/nodelet/nodelet load depthimage_to_laserscan/DepthImageToLaserScanNodelet zed2_nodelet_manager image:=zed_nodelet/depth/depth_registered __name:=depthimage_to_laserscan __log:=/home/tud-jxavier/.ros/log/b946f42a-58f4-11ec-931a-48b02d05ab65/zed2-depthimage_to_laserscan-4.log
+           ├─13055 /media/tud-jxavier/SSD/catkin_ws/devel/lib/rr_openrover_driver/openrover_driver_node __name:=rr_openrover_driver __log:=/home/tud-jxavier/.ros/log/b946f42a-58f4-11ec-931a-48b02d05ab65/rr_openrover_driver-5.log
+           ├─13057 /media/tud-jxavier/SSD/catkin_ws/devel/lib/robot_localization/ekf_localization_node odometry/filtered:=odom/ekf/enc_imu __name:=ekf_odom_node __log:=/home/tud-jxavier/.ros/log/b946f42a-58f4-11ec-931a-48b02d05ab65/ekf_odom_node-6.log
+           ├─13067 python /home/tud-jxavier/catkin_ws/src/ds4_driver/nodes/ds4_driver_node.py __name:=ds4_driver __log:=/home/tud-jxavier/.ros/log/b946f42a-58f4-11ec-931a-48b02d05ab65/ds4_driver-7.log
+           ├─13074 /opt/ros/melodic/lib/tf2_ros/static_transform_publisher 0 0.05 -0.01 -1.5707 0 1.5707 ds4 ds4_imu __name:=ds4_to_imu __log:=/home/tud-jxavier/.ros/log/b946f42a-58f4-11ec-931a-48b02d05ab65/ds4_to_imu-8.log
+           ├─13080 python /home/tud-jxavier/catkin_ws/src/rr_openrover_stack/rr_control_input_manager/scripts/ps4_mapper.py __name:=ps4_mapper __log:=/home/tud-jxavier/.ros/log/b946f42a-58f4-11ec-931a-48b02d05ab65/ps4_mapper-9.log
+           ├─13095 /opt/ros/melodic/lib/twist_mux/twist_mux cmd_vel_out:=/cmd_vel/managed __name:=twist_mux __log:=/home/tud-jxavier/.ros/log/b946f42a-58f4-11ec-931a-48b02d05ab65/twist_mux-10.log
+           └─13099 python /home/tud-jxavier/catkin_ws/src/rr_openrover_stack/rr_control_input_manager/scripts/control_input_manager.py __name:=rr_control_input_manager_node __log:=/home/tud-jxavier/.ros/log/b946f42a-58f4-11ec-931a-48b02d05ab65/rr_control_input_manager_node-11.log
+
+Dec 09 16:56:14 tudjxavier-desktop roverrobotics[12950]: [ INFO] [1639065374.371010162]:  * right_camera_frame                -> zed2_right_camera_frame
+Dec 09 16:56:14 tudjxavier-desktop roverrobotics[12950]: [ INFO] [1639065374.371043508]:  * right_camera_optical_frame        -> zed2_right_camera_optical_frame
+Dec 09 16:56:14 tudjxavier-desktop roverrobotics[12950]: [ INFO] [1639065374.371070645]:  * depth_frame                        -> zed2_left_camera_frame
+Dec 09 16:56:14 tudjxavier-desktop roverrobotics[12950]: [ INFO] [1639065374.371103831]:  * depth_optical_frame                -> zed2_left_camera_optical_frame
+Dec 09 16:56:14 tudjxavier-desktop roverrobotics[12950]: [ INFO] [1639065374.371167162]:  * disparity_frame                -> zed2_left_camera_frame
+Dec 09 16:56:14 tudjxavier-desktop roverrobotics[12950]: [ INFO] [1639065374.371208252]:  * disparity_optical_frame        -> zed2_left_camera_optical_frame
+Dec 09 16:56:14 tudjxavier-desktop roverrobotics[12950]: [ INFO] [1639065374.371264830]:  * confidence_frame                -> zed2_left_camera_frame
+Dec 09 16:56:14 tudjxavier-desktop roverrobotics[12950]: [ INFO] [1639065374.371370339]:  * confidence_optical_frame        -> zed2_left_camera_optical_frame
+Dec 09 16:56:14 tudjxavier-desktop roverrobotics[12950]: [ INFO] [1639065374.373[ERROR] [1639065374.756033644]: Failed to update param 4. getParameterData() failed. Received bad CRC. Received: fd,fd,fd,fd,fd
+Dec 09 16:56:15 tudjxavier-desktop roverrobotics[12950]: [ERROR] [1639065375.279987592]: Failed to update param 2. getParameterData() failed. Received bad CRC. Received: fd,fd,fd,fd,fd

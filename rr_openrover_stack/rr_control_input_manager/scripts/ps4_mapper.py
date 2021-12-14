@@ -65,7 +65,7 @@ class ps4_mapper(object):
             vel_vec = getattr(twist, vel_type)
             for k, expr in self._inputs[vel_type].items():
                 scale = self._scales[vel_type].get(k, 1.0)
-                val = -eval(expr, {}, input_vals)  
+                val = eval(expr, {}, input_vals)  
                 setattr(vel_vec, k, scale * val)
         if (msg.button_l1 or msg.button_r1) and self.buttonpressed is False:
             trim_msg = Float32()
@@ -107,6 +107,7 @@ class ps4_mapper(object):
             button2_msg.data = True
             self._pub_circle.publish(button2_msg)
         self._pub_circle.publish(button2_msg)
+	#print("test")
         self._pub_cross.publish(button_msg)
         self._pub.publish(to_pub)
 

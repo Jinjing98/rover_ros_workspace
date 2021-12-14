@@ -47,7 +47,7 @@ def Callback(msg):
 	pose_ori = [msg.pose.pose.orientation.x, msg.pose.pose.orientation.y, msg.pose.pose.orientation.z, msg.pose.pose.orientation.w]
 	pose_ori = ['%.3f' % n for n in pose_ori]
 
-	twist_linear = [msg.twist.twist.linear.x,msg.twist.twist.linear.y,msg.twist.twist.linear.z,msg.twist.twist.linear.z]
+	twist_linear = [msg.twist.twist.linear.x,msg.twist.twist.linear.y,msg.twist.twist.linear.z]
 	twist_ang = [msg.twist.twist.angular.x,msg.twist.twist.angular.y,msg.twist.twist.angular.z]
 	twist_linear =['%.3f' % n for n in twist_linear]
 	twist_ang = ['%.3f' % n for n in twist_ang]
