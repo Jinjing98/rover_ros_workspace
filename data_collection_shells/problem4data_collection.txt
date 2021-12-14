@@ -1,12 +1,18 @@
+solved:
 1.the monotor is not comfortable and flexiable enough to operate; the connection issues; maybe need to power it fisrt to initilize the monitor;
 2. Due to the battaries and everything; it is not portable;
 3. The connection issues of controller and rover; sometimes it just works itself after some mins;
 4. start and stop recording should be more flexible;
 5. When it is getting to far of the monitor/keyboard from the car, the connection is getting bad;
 6. limit the driving speed to make the lidar pointcloud useful.
-7. The zed camera is not so stable, and it will tremble a little bit when driving.
 8. Take care of the connection of monitor and wireless video connector(balck box), it might brake the HDMI cable;
-9. when driving, follow the straight line as much as possible to make the route stable.
-10. when driving straight; it slightly deviate towards left direction
-
 11. solve the monitor issue via ssh(midnight commander); but require private wifi rather uni network.
+
+
+
+to be solved:
+5. When it is getting to far of the monitor/keyboard from the car, the connection is getting bad;
+6.The connection issues of controller and rover; sometimes it just works itself after some mins;
+7. The zed camera is not so stable, and it will tremble a little bit when driving.
+9. when driving, follow the straight line as much as possible to make the route stable.
+10. when driving straight; it slightly deviate towards left direction.
